@@ -14,6 +14,10 @@
   <packaging>war</packaging>
   <name>Docs Web</name>
 
+  <properties>
+    <pmd.ruleset>${project.parent.basedir}/pmd-ruleset.xml</pmd.ruleset>
+  </properties>
+
   <dependencies>
     <!-- Dependencies to Docs -->
     <dependency>
@@ -268,8 +272,36 @@
               <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
             </configuration>
           </plugin>
+
+          <plugin> 
+            <groupId>org.jacoco</groupId> 
+            <artifactId>jacoco-maven-plugin</artifactId> 
+            <version>0.8.9</version> 
+            <executions> 
+              <execution> 
+                <goals> 
+                  <goal>prepare-agent</goal> 
+                </goals> 
+              </execution>
+              <!-- attached to Maven test phase --> 
+              <execution> 
+                <id>report</id> 
+                <phase>test</phase> 
+                <goals> 
+                  <goal>report</goal> 
+                </goals> 
+              </execution> 
+            </executions> 
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
+
+  <distributionManagement>
+    <site>
+      <id>local-site</id>
+      <url>file://${project.build.directory}/site</url>
+    </site>
+  </distributionManagement>
 </project>
