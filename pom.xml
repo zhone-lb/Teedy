@@ -123,6 +123,27 @@
         <artifactId>maven-site-plugin</artifactId>
         <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
       </plugin>
+
+      <plugin> 
+        <groupId>org.jacoco</groupId> 
+        <artifactId>jacoco-maven-plugin</artifactId> 
+        <version>0.8.9</version> 
+        <executions> 
+          <execution> 
+            <goals> 
+              <goal>prepare-agent</goal> 
+            </goals> 
+          </execution>
+          <!-- attached to Maven test phase --> 
+          <execution> 
+            <id>report</id> 
+            <phase>test</phase> 
+            <goals> 
+              <goal>report</goal> 
+            </goals> 
+          </execution> 
+        </executions> 
+      </plugin>
     </plugins>
   </build>
 
@@ -495,13 +516,54 @@
         <version>${com.levigo.jbig2.levigo-jbig2-imageio.version}</version>
       </dependency>
 
+      <dependency> 
+        <groupId>org.junit.jupiter</groupId> 
+        <artifactId>junit-jupiter</artifactId> 
+        <version>5.7.1</version> 
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <reporting>
+    <plugins>
+      <plugin> 
+        <groupId>org.apache.maven.plugins</groupId> 
+        <artifactId>maven-surefire-report-plugin</artifactId> 
+        <version>3.0.0</version> 
+        <reportSets> 
+          <reportSet> 
+            <id>aggregate</id> 
+            <inherited>false</inherited> 
+            <reports> 
+              <report>report</report> 
+            </reports> 
+            <configuration> 
+              <aggregate>true</aggregate> 
+            </configuration> 
+          </reportSet> 
+        </reportSets> 
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.9</version>
+        <reportSets>
+          <reportSet>
+            <id>aggregate</id> 
+            <inherited>false</inherited> 
+            <reports>
+              <report>report-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <distributionManagement>
     <site>
       <id>local-site</id>
-      <url>file://${project.build.directory}/staging</url>
+      <url>file://${project.build.directory}/site</url>
     </site>
   </distributionManagement>
 

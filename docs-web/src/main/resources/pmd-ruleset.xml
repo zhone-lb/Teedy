@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+  <description>Custom PMD ruleset</description>
+
+    <!-- Cyclomatic Complexity -->
+    <rule ref="rulesets/java/design.xml/CyclomaticComplexity"/>
+
+    <!-- Weighted Methods per Class -->
+    <rule ref="rulesets/java/design.xml/Wmc"/>
+
+    <!-- Coupling Between Objects -->
+    <rule ref="rulesets/java/design.xml/CouplingBetweenObjects"/>
+
+    <!-- Lack of Cohesion in Methods -->
+    <rule ref="rulesets/java/design.xml/LawOfDemeter"/>
+    <!-- ⚠️ 注意：PMD没有直接LCOM，用LoD近似 -->
+
+    <!-- Lines of Code -->
+    <rule ref="rulesets/java/codesize.xml/NcssCount"/>
+  
+</ruleset>

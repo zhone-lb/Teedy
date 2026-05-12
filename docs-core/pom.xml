@@ -236,4 +236,12 @@
     </resources>
   </build>
 
+  <!-- Explicit site URL so parent reactor does not append artifactId under target/site (MPIR module links). -->
+  <distributionManagement>
+    <site>
+      <id>local-site</id>
+      <url>file://${project.build.directory}/site</url>
+    </site>
+  </distributionManagement>
+
 </project>
