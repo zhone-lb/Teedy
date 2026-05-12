@@ -14,6 +14,10 @@
   <packaging>jar</packaging>
   <name>Docs Core</name>
 
+  <properties>
+    <pmd.ruleset>${project.parent.basedir}/pmd-ruleset.xml</pmd.ruleset>
+  </properties>
+
   <dependencies>
     <!-- Persistence layer dependencies -->
     <dependency>

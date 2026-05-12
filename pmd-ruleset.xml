@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="Custom Metrics Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0
+                             http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>
+        Metrics-oriented ruleset: CC, WMC (approximated), CBO, LoD proxy for LCOM, NCSS.
+        WMC: PMD 7 removed WeightedMethodCount; TooManyMethods is used as a practical substitute.
+    </description>
+
+    <!-- Cyclomatic Complexity -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity"/>
+
+    <!-- Weighted Methods per Class: rule removed in PMD 7; TooManyMethods approximates method-count pressure -->
+    <rule ref="category/java/design.xml/TooManyMethods"/>
+
+    <!-- Coupling Between Objects -->
+    <rule ref="category/java/design.xml/CouplingBetweenObjects"/>
+
+    <!-- Lack of Cohesion in Methods: PMD has no LCOM; Law of Demeter used as proxy -->
+    <rule ref="category/java/design.xml/LawOfDemeter"/>
+
+    <!-- Lines of Code (NCSS); in PMD 7 this rule lives under design -->
+    <rule ref="category/java/design.xml/NcssCount"/>
+
+</ruleset>
